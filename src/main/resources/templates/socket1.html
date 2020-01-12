@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>websocket-java-socketio</title>
+    <script src="https://cdn.bootcss.com/socket.io/2.2.0/socket.io.js"></script>
+</head>
+<body>
+<h1>Socket.io Test</h1>
+<div><p id="status">Waiting for input</p></div>
+<div id="message" style="width: 1000px; height: 800px; background-color: black; color: green">null</div>
+<button id="connect" onClick='connect()'/>Connect</button>
+<button id="disconnect" onClick='disconnect()'>Disconnect</button>
+<button id="send" onClick='send()'/>Send Message</button>
+</body>
+
+<script type="text/javascript">
+
+    /**
+     * 前端js的 socket.emit("事件名","参数数据")方法，是触发后端自定义消息事件的时候使用的,
+     * 前端js的 socket.on("事件名",匿名函数(服务器向客户端发送的数据))为监听服务器端的事件
+     **/
+    var socket = io.connect("ws://localhost:9096?mac=2");
+    var firstconnect = true;
+
+    function connect() {
+        if(firstconnect) {
+        } else {
+            socket.socket.reconnect();
+        }
+    }
+
+    socket.on('connect', function(){ status_update("Connected to Server"); });
+    socket.on('disconnect', function(){ status_update("Disconnected from Server"); });
+    socket.on('messageevent', function(data) {
+        message(data)
+    });
+
+    //断开连接
+    function disconnect() {
+        socket.disconnect();
+    }
+
+    function message(data) {
+        let cont = document.getElementById('message').innerHTML;
+		cont = data;
+    }
+
+    function status_update(txt){
+        document.getElementById('status').innerHTML = txt;
+    }
+
+    function esc(msg){
+        return msg.replace(/</g, '<').replace(/>/g, '>');
+    }
+    //点击发送消息触发
+    function send() {
+        var msg = "help";
+        socket.emit('messageevent', {"msg": msg});
+    };
+</script>
+</html>

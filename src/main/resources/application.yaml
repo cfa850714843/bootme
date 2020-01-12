@@ -1,0 +1,9 @@
+server:
+  port: 9095
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:53306/baby
+    username: baby
+    password: baby
+    driver-class-name: com.mysql.jdbc.Driver
