@@ -1,12 +1,20 @@
 package com.phigey.bootme.dao.mapper;
-import java.util.List;
 
-import com.phigey.bootme.dao.entity.People;
-import com.phigey.bootme.dao.entity.PeopleExample;
-import org.springframework.stereotype.Repository;
+import com.phigey.bootme.dao.entity.User;
+import com.phigey.bootme.dao.entity.UserExample;
+import org.apache.ibatis.annotations.Mapper;
 
-@Repository
-public interface PeopleMapper {
+/**
+ * @author lizf
+ */
+
+@Mapper
+public interface UserMapper {
+    /**
+     * @mbg.generated generated automatically, do not modify!
+     */
+    long countByExample(UserExample example);
+
     /**
      * @mbg.generated generated automatically, do not modify!
      */
@@ -15,30 +23,25 @@ public interface PeopleMapper {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    int insert(People record);
+    int insert(User record);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    int insertSelective(People record);
+    int insertSelective(User record);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    List<People> selectByExample(PeopleExample example);
+    User selectByPrimaryKey(Integer id);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    People selectByPrimaryKey(Integer id);
+    int updateByPrimaryKeySelective(User record);
 
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    int updateByPrimaryKeySelective(People record);
-
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
-    int updateByPrimaryKey(People record);
+    int updateByPrimaryKey(User record);
 }

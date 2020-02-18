@@ -2,7 +2,13 @@ server:
   port: 9095
 spring:
   datasource:
-    url: jdbc:mysql://192.168.7.8:30106/fish
+    url: jdbc:mysql://192.168.7.8:30106/db03?useSSL=false
     username: fish
     password: fish
     driver-class-name: com.mysql.jdbc.Driver
+  liquibase:
+    enabled: true
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+

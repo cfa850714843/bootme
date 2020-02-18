@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.phigey.bootme.dao.mapper.PeopleMapper">
-  <resultMap id="BaseResultMap" type="com.phigey.bootme.dao.entity.People">
+<mapper namespace="com.phigey.bootme.dao.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.phigey.bootme.dao.entity.User">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -44,71 +44,56 @@
   </sql>
   <sql id="Base_Column_List">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    id, "name", job, phone_number, ip, company, email, address
+    `id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`
   </sql>
-  <select id="selectByExample" parameterType="com.phigey.bootme.dao.entity.PeopleExample" resultMap="BaseResultMap">
-    <!-- @mbg.generated: generated automatically, do not modify! -->
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from people
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     select 
     <include refid="Base_Column_List" />
-    from people
-    where id = #{id,jdbcType=INTEGER}
+    from `t_user`
+    where `id` = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    delete from people
-    where id = #{id,jdbcType=INTEGER}
+    delete from `t_user`
+    where `id` = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.phigey.bootme.dao.entity.People">
+  <insert id="insert" parameterType="com.phigey.bootme.dao.entity.User">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    insert into people (id, "name", job, 
-      phone_number, ip, company, 
-      email, address)
+    insert into `t_user` (`id`, `name`, `job`,
+      `phone_number`, `ip`, `company`,
+      `email`, `address`)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
       #{phoneNumber,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.phigey.bootme.dao.entity.People">
+  <insert id="insertSelective" parameterType="com.phigey.bootme.dao.entity.User">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    insert into people
+    insert into `t_user`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        id,
+        `id`,
       </if>
       <if test="name != null">
-        "name",
+        `name`,
       </if>
       <if test="job != null">
-        job,
+        `job`,
       </if>
       <if test="phoneNumber != null">
-        phone_number,
+        `phone_number`,
       </if>
       <if test="ip != null">
-        ip,
+        `ip`,
       </if>
       <if test="company != null">
-        company,
+        `company`,
       </if>
       <if test="email != null">
-        email,
+        `email`,
       </if>
       <if test="address != null">
-        address,
+        `address`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -138,44 +123,51 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.phigey.bootme.dao.entity.People">
+  <select id="countByExample" parameterType="com.phigey.bootme.dao.entity.UserExample" resultType="java.lang.Long">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    update people
+    select count(*) from `t_user`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phigey.bootme.dao.entity.User">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update `t_user`
     <set>
       <if test="name != null">
-        "name" = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="job != null">
-        job = #{job,jdbcType=VARCHAR},
+        `job` = #{job,jdbcType=VARCHAR},
       </if>
       <if test="phoneNumber != null">
-        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+        `phone_number` = #{phoneNumber,jdbcType=VARCHAR},
       </if>
       <if test="ip != null">
-        ip = #{ip,jdbcType=VARCHAR},
+        `ip` = #{ip,jdbcType=VARCHAR},
       </if>
       <if test="company != null">
-        company = #{company,jdbcType=VARCHAR},
+        `company` = #{company,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
+        `email` = #{email,jdbcType=VARCHAR},
       </if>
       <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
+        `address` = #{address,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where `id` = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.phigey.bootme.dao.entity.People">
+  <update id="updateByPrimaryKey" parameterType="com.phigey.bootme.dao.entity.User">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    update people
-    set "name" = #{name,jdbcType=VARCHAR},
-      job = #{job,jdbcType=VARCHAR},
-      phone_number = #{phoneNumber,jdbcType=VARCHAR},
-      ip = #{ip,jdbcType=VARCHAR},
-      company = #{company,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    update `t_user`
+    set `name` = #{name,jdbcType=VARCHAR},
+      `job` = #{job,jdbcType=VARCHAR},
+      `phone_number` = #{phoneNumber,jdbcType=VARCHAR},
+      `ip` = #{ip,jdbcType=VARCHAR},
+      `company` = #{company,jdbcType=VARCHAR},
+      `email` = #{email,jdbcType=VARCHAR},
+      `address` = #{address,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

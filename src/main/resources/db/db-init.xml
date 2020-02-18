@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <preConditions>
+        <runningAs username="fish"/>
+    </preConditions>
+    <changeSet id="1" author="fish">
+        <createTable tableName="t_user">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="job" type="varchar(255)"/>
+            <column name="phone_number" type="char(255)"/>
+            <column name="ip" type="char(255)"/>
+            <column name="company" type="char(255)"/>
+            <column name="email" type="char(255)"/>
+            <column name="address" type="char(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="fish">
+        <sql>
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (1, '陈桂兰', '通信技术工程师', '14508590495', '180.38.108.80', '图龙信息网络有限公司', 'jingcui@gmail.com', '翁路b座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (2, '刘玉兰', '票务', '18608865998', '23.146.239.81', '创亿网络有限公司', 'uyin@changhao.cn', '南昌街J座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (3, '吴云', '认证工程师', '18720822932', '130.178.84.64', '新格林耐特传媒有限公司', 'yang11@hou.net', '胡街j座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (4, '李丽', '医疗器械市场推广', '15385229077', '111.201.45.123', '易动力传媒有限公司', 'gang00@qiangzou.cn', '辽阳街Y座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (5, '傅艳', '研发总监/部长/专家', '18703479655', '120.189.21.23', '快讯科技有限公司', 'kwen@xiuyingpeng.cn', '福州路C座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (6, '向华', '旋压工', '13617426551', '212.153.112.67', '趋势科技有限公司', 'juanyang@taofang.net', '六盘水路X座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (7, '黄桂英', '心理医生', '14538196624', '71.169.231.54', '恩悌信息有限公司', 'nzou@peng.cn', '海门路F座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (8, '李勇', '其他', '13179902944', '185.97.67.29', '合联电子传媒有限公司', 'nfang@hotmail.com', '六盘水路i座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (9, '王小红', '销售人员', '13743013446', '82.232.83.209', '创联世纪网络有限公司', 'eliang@fangjuan.cn', '刘路Q座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (10, '梁成', '收货员', '13931059378', '88.77.33.116', '飞海科技传媒有限公司', 'houxiuying@gangyan.cn', '沈阳街U座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (11, '李娜', 'FAE 现场应用工程师', '18047403863', '7.116.251.24', 'MBP软件网络有限公司', 'xiuying67@xue.cn', '张家港街A座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (12, '张柳', '生产/营运', '13719408774', '58.119.204.227', '时刻传媒有限公司', 'tanping@yahoo.com', '李路j座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (13, '刘波', '驯兽师/助理驯兽师', '18868528339', '103.130.70.49', '易动力科技有限公司', 'minliao@lei.cn', '陈街N座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (14, '许红', '装订工', '13664691447', '90.7.129.102', '易动力信息有限公司', 'dtang@yahoo.com', '刘路s座');
+            INSERT INTO `t_user`(`id`, `name`, `job`, `phone_number`, `ip`, `company`, `email`, `address`) VALUES (15, '李桂芳', '质量管理/测试工程师(QA/QC工程师)', '15387714140', '45.155.250.219', '创联世纪信息有限公司', 'guiying10@zhao.cn', '上海街R座');
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
