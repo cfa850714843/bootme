@@ -37,9 +37,7 @@ public class MessageEventHandler {
     @OnConnect
     public void onConnect(SocketIOClient client) {
         String mac = client.getHandshakeData().getSingleUrlParam("mac");
-        //存储SocketIOClient，用于发送消息
         socketIOClientMap.put(mac, client);
-        //回发消息
         client.sendEvent("message", "onConnect back");
         log.info("client= {}, mac= {}", client.getSessionId(), mac);
     }
@@ -61,7 +59,7 @@ public class MessageEventHandler {
      * @param request 请求信息
      * @param data    　客户端发送数据
      */
-    @OnEvent(value = "messageevent")
+    @OnEvent(value = "tell1")
     public void onEvent(SocketIOClient client, AckRequest request, Message data) {
         log.info("received: {}", data);
         //广播消息

@@ -20,6 +20,6 @@ public class SocketIoServerRunner implements CommandLineRunner {
     @Override
     public void run(String... strings) {
         socketIOServer.start();
-        log.info("socket.io启动成功！");
+        log.info("socket.io is running！");
     }
 }
