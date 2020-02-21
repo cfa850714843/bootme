@@ -1,10 +1,9 @@
 package com.phigey.bootme.conponent;
 
+import com.phigey.bootme.common.StringProcessor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,9 +15,6 @@ import java.io.InputStreamReader;
 @Component
 @Slf4j
 public class CommandExecutor {
-
-    @Autowired
-    private MessageEventHandler messageEventHandler;
 
     @Async
     public void execute (String cmd, StringProcessor stringProcessor) {

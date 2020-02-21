@@ -1,32 +1,63 @@
+global:
+  queue:
+    cmd: quque_cmd
+    result: queue_result
+
+  daemon:
+    host: 192.168.7.8
 spring:
   profiles:
-    active: prod
-
----
-spring:
-  profiles: dev
-  datasource:
-    url: jdbc:mysql://192.168.7.8:30106/db03?useSSL=false&useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
-    username: fish
-    password: fish
-    driver-class-name: com.mysql.jdbc.Driver
+    active: dev
   liquibase:
     enabled: true
   devtools:
     restart:
       enabled: false
 
-server:
-  port: 9095
-
+management:
+  health:
+    redis:
+      enabled: true
+    db:
+      enabled: true
+    rabbit:
+      enabled: true
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+  configuration:
+    lazy-loading-enabled: true
 
 logging:
   level:
     root: INFO
 
-#### websocket properties
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://${global.daemon.host}:30106/db03?useSSL=false&useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+    username: fish
+    password: fish
+    driver-class-name: com.mysql.jdbc.Driver
+
+  redis:
+    host: ${global.daemon.host}
+    port: 50079
+    password: 123456
+    timeout: 60
+    database: 0
+
+  rabbitmq:
+    host: ${global.daemon.host}
+    port: 50072
+    username: sheep
+    password: sheep
+    virtual-host: /
+
+
+server:
+  port: 9095
+
 socket.io:
   host: localhost
   port: 9096
@@ -35,26 +66,28 @@ socket.io:
 spring:
   profiles: prod
   datasource:
-    url: jdbc:mysql://192.168.7.8:30106/db03?useSSL=false&useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://${global.daemon.host}:30106/db03?useSSL=false&useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
     username: fish
     password: fish
     driver-class-name: com.mysql.jdbc.Driver
-  liquibase:
-    enabled: true
-  devtools:
-    restart:
-      enabled: false
+
+  redis:
+    host: ${global.daemon.host}
+    port: 50079
+    password: 123456
+    timeout: 60
+    database: 0
+
+  rabbitmq:
+    host: ${global.daemon.host}
+    port: 50072
+    username: sheep
+    password: sheep
+
+
 server:
   port: 9097
 
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-
-logging:
-  level:
-    root: INFO
-
-#### websocket properties
 socket.io:
   host: localhost
   port: 9098

@@ -1,6 +1,7 @@
 package com.phigey.bootme.controller;
 
 import com.phigey.bootme.service.TestService;
+import com.phigey.bootme.worker.IWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,9 @@ public class HomeController {
     @Autowired
     private TestService testService;
 
+    @Autowired
+    private IWorker iWorker;
+
     @GetMapping
     public String home(){
         return "<h2>App is running...</h2>";
@@ -24,6 +28,7 @@ public class HomeController {
 
     @GetMapping(path = "test")
     public String test() {
+        iWorker.doSomething();
         testService.test();
         return "<h2>test service!</h2>";
     }

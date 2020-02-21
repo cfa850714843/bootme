@@ -1,4 +1,4 @@
-package com.phigey.bootme.conponent;
+package com.phigey.bootme.common;
 
 /**
  * @author lizf

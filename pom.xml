@@ -84,7 +84,31 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>3.12.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
         </dependency>
 
     </dependencies>
@@ -97,38 +121,6 @@
                 <configuration>
                     <mainClass>com.phigey.bootme.BootMeApplication</mainClass>
                     <fork>true</fork>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.1.1</version>
-                <configuration>
-                    <imageName>${docker.image.prefix}:${project.artifactId}</imageName>
-                    <registryUrl>http://${user.registry}</registryUrl>
-                    <dockerHost>http://192.168.7.8:52375</dockerHost>
-                    <baseImage>${base.image}</baseImage>
-                    <imageTags>
-                        <imageTag>0.1</imageTag>
-                        <imageTag>${project.version}</imageTag>
-                    </imageTags>
-                    <forceTags>true</forceTags>
-                    <cmd>["java", "-version"]</cmd>
-                    <entryPoint>["java", "-jar", "${project.build.finalName}.jar", "--spring.config.location=", "application.yaml"]</entryPoint>
-                    <rm>true</rm>
-                    <useGitCommitId>true</useGitCommitId>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.basedir}/src/main/resources</directory>
-                            <include>application.yaml</include>
-                        </resource>
-                    </resources>
                 </configuration>
             </plugin>
         </plugins>
