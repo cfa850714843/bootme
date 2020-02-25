@@ -1,6 +1,6 @@
 package com.phigey.bootme.conponent;
 
-import com.phigey.bootme.enums.LockKeyConstant;
+import com.phigey.bootme.constant.LockKeyConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.RLock;

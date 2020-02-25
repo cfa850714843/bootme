@@ -1,5 +1,6 @@
 package com.phigey.bootme;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +12,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 
 @SpringBootApplication
+@MapperScan(basePackages = {"com.phigey.bootme.dao.mapper"})
 @EnableAsync
 public class BootMeApplication implements ApplicationRunner {
 

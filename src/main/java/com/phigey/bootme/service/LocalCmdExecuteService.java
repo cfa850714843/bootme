@@ -3,10 +3,10 @@ package com.phigey.bootme.service;
 /**
  * @author lizf
  */
-public interface TestService {
+public interface LocalCmdExecuteService {
 
     /**
      * test
      */
-    void test();
+    void executeCmd();
 }
