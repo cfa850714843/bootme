@@ -42,8 +42,8 @@ public class UserMenuController {
      */
     @GetMapping("/getUserInfoList")
     @RequiresPermissions("sys:user:info")
-    public Map<String,Object> getUserInfoList(){
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> getUserInfoList(){
+        Map<String, Object> map = new HashMap<>();
         List<SysUserEntity> sysUserEntityList = sysUserService.list();
         map.put("sysUserEntityList",sysUserEntityList);
         return map;
@@ -56,8 +56,8 @@ public class UserMenuController {
      */
     @GetMapping("/getRoleInfoList")
     @RequiresPermissions("sys:role:info")
-    public Map<String,Object> getRoleInfoList(){
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> getRoleInfoList(){
+        Map<String, Object> map = new HashMap<>();
         List<SysRoleEntity> sysRoleEntityList = sysRoleService.list();
         map.put("sysRoleEntityList",sysRoleEntityList);
         return map;
@@ -70,10 +70,10 @@ public class UserMenuController {
      */
     @GetMapping("/getMenuInfoList")
     @RequiresPermissions("sys:menu:info")
-    public Map<String,Object> getMenuInfoList(){
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> getMenuInfoList(){
+        Map<String, Object> map = new HashMap<>();
         List<SysMenuEntity> sysMenuEntityList = sysMenuService.list();
-        map.put("sysMenuEntityList",sysMenuEntityList);
+        map.put("sysMenuEntityList", sysMenuEntityList);
         return map;
     }
 
@@ -84,14 +84,14 @@ public class UserMenuController {
      */
     @GetMapping("/getInfoAll")
     @RequiresPermissions("sys:info:all")
-    public Map<String,Object> getInfoAll(){
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> getInfoAll(){
+        Map<String, Object> map = new HashMap<>();
         List<SysUserEntity> sysUserEntityList = sysUserService.list();
-        map.put("sysUserEntityList",sysUserEntityList);
+        map.put("sysUserEntityList", sysUserEntityList);
         List<SysRoleEntity> sysRoleEntityList = sysRoleService.list();
-        map.put("sysRoleEntityList",sysRoleEntityList);
+        map.put("sysRoleEntityList", sysRoleEntityList);
         List<SysMenuEntity> sysMenuEntityList = sysMenuService.list();
-        map.put("sysMenuEntityList",sysMenuEntityList);
+        map.put("sysMenuEntityList", sysMenuEntityList);
         return map;
     }
 
@@ -102,7 +102,7 @@ public class UserMenuController {
      * @Return Map<String, Object>
      */
     @GetMapping("/addMenu")
-    public Map<String,Object> addMenu(){
+    public Map<String, Object> addMenu(){
         //添加管理员角色权限
         SysRoleMenuEntity sysRoleMenuEntity = new SysRoleMenuEntity();
         sysRoleMenuEntity.setMenuId(4L);
@@ -111,9 +111,9 @@ public class UserMenuController {
         //清除缓存
         String username = "admin";
         ShiroUtils.deleteCache(username,false);
-        Map<String,Object> map = new HashMap<>();
-        map.put("code",200);
-        map.put("msg","权限添加成功");
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 200);
+        map.put("msg", "权限添加成功");
         return map;
     }
 }

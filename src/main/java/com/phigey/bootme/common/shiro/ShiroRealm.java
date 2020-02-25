@@ -73,7 +73,7 @@ public class ShiroRealm extends AuthorizingRealm {
             throw new AuthenticationException();
         }
         //判断账号是否被冻结
-        if (user.getState()==null||user.getState().equals("PROHIBIT")){
+        if (null == user.getState() ||("PROHIBIT").equals(user.getState())){
             throw new LockedAccountException();
         }
         //进行验证

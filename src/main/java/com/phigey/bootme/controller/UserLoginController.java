@@ -16,7 +16,6 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,16 +46,16 @@ public class UserLoginController {
             //进行登录操作
             subject.login(token);
         }catch (IncorrectCredentialsException e) {
-            map.put("code",500);
-            map.put("msg","用户不存在或者密码错误");
+            map.put("code", 500);
+            map.put("msg", "用户不存在或者密码错误");
             return map;
         } catch (LockedAccountException e) {
-            map.put("code",500);
-            map.put("msg","登录失败，该用户已被冻结");
+            map.put("code", 500);
+            map.put("msg", "登录失败，该用户已被冻结");
             return map;
         } catch (AuthenticationException e) {
-            map.put("code",500);
-            map.put("msg","该用户不存在");
+            map.put("code", 500);
+            map.put("msg", "该用户不存在");
             return map;
         } catch (Exception e) {
             map.put("code",500);
