@@ -26,6 +26,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     lazy-loading-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 logging:
   level:
@@ -44,8 +45,14 @@ spring:
     host: ${global.daemon.host}
     port: 50079
     password: 123456
-    timeout: 60
+    timeout: 6000
     database: 0
+    jedis:
+      pool:
+        max-active: 1000
+        max-wait: -1
+        max-idle: 10
+        min-idle: 5
 
   rabbitmq:
     host: ${global.daemon.host}
@@ -75,8 +82,14 @@ spring:
     host: ${global.daemon.host}
     port: 50079
     password: 123456
-    timeout: 60
+    timeout: 6000
     database: 0
+    jedis:
+      pool:
+        max-active: 1000
+        max-wait: -1
+        max-idle: 10
+        min-idle: 5
 
   rabbitmq:
     host: ${global.daemon.host}

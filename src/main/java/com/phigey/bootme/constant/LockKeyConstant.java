@@ -1,4 +1,4 @@
-package com.phigey.bootme.enums;
+package com.phigey.bootme.constant;
 
 /**
  * @author lizf

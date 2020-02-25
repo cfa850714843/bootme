@@ -1,6 +1,6 @@
 package com.phigey.bootme.service.impl;
 
-import com.phigey.bootme.service.TestService;
+import com.phigey.bootme.service.LocalCmdExecuteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class TestServiceImpl implements TestService {
+public class LocalCmdExecuteServiceImpl implements LocalCmdExecuteService {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -24,7 +24,7 @@ public class TestServiceImpl implements TestService {
     String cmdQueue;
 
     @Override
-    public void test() {
+    public void executeCmd() {
         rabbitTemplate.convertAndSend(cmdQueue, "help".getBytes());
     }
 }

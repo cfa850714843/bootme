@@ -1,6 +1,6 @@
 package com.phigey.bootme.controller;
 
-import com.phigey.bootme.service.TestService;
+import com.phigey.bootme.service.LocalCmdExecuteService;
 import com.phigey.bootme.worker.IWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
     @Autowired
-    private TestService testService;
+    private LocalCmdExecuteService localCommandExecuteService;
 
     @Autowired
     private IWorker iWorker;
@@ -29,7 +29,7 @@ public class HomeController {
     @GetMapping(path = "test")
     public String test() {
         iWorker.doSomething();
-        testService.test();
+        localCommandExecuteService.executeCmd();
         return "<h2>test service!</h2>";
     }
 }
