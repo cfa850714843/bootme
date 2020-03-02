@@ -24,13 +24,13 @@ public class RabbitConfig {
     @Bean
     public Queue cmdQueue(){
         log.info("create cmd queue!");
-        return new Queue(cmdQueue, true, true, false);
+        return new Queue(cmdQueue, true, false, false);
     }
 
     @Bean
     public Queue resultQueue(){
         log.info("create result queue!");
-        return new Queue(resultQueue,true, true, false);
+        return new Queue(resultQueue,true, false, false);
     }
 
 }
