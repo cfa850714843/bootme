@@ -6,6 +6,6 @@ import lombok.Data;
  * @author lizf
  */
 @Data
-public class Message {
+public class WebSocketMessage {
     private String msg;
 }

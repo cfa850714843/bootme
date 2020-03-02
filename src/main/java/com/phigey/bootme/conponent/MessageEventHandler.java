@@ -8,7 +8,6 @@ import com.corundumstudio.socketio.annotation.OnDisconnect;
 import com.corundumstudio.socketio.annotation.OnEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -56,14 +55,15 @@ public class MessageEventHandler {
      * 客户端事件
      *
      * @param client  　客户端信息
-     * @param request 请求信息
+     * @param request   请求信息
      * @param data    　客户端发送数据
      */
     @OnEvent(value = "tell1")
-    public void onEvent(SocketIOClient client, AckRequest request, Message data) {
+    public void onEvent(SocketIOClient client, AckRequest request, WebSocketMessage data) {
         log.info("received: {}", data);
         //广播消息
         String cmd = data.getMsg();
+        log.info("msg: {}", data);
         commandExecutor.execute(cmd, msg -> sendBroadcast(msg));
 
     }
@@ -78,4 +78,10 @@ public class MessageEventHandler {
             }
         }
     }
+
+    public void sendToSingleUser(String clientId, String msg) {
+        SocketIOClient client = socketIOClientMap.get(clientId);
+        client.sendEvent(msg);
+    }
+
 }
