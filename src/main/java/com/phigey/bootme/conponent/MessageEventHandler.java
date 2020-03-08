@@ -6,28 +6,28 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
 import com.corundumstudio.socketio.annotation.OnEvent;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 /**
  * @author lizf
  */
 
 @Component
-@Slf4j
 public class MessageEventHandler {
+
+    private Logger logger = LoggerFactory.getLogger(MessageEventHandler.class);
+
     @Autowired
     private SocketIOServer socketIoServer;
 
     @Autowired
     private CommandExecutor commandExecutor;
 
-    public static ConcurrentMap<String, SocketIOClient> socketIOClientMap = new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<String, SocketIOClient> socketIOClientMap = new ConcurrentHashMap<>();
 
     /**
      * 客户端连接的时候触发
@@ -39,7 +39,7 @@ public class MessageEventHandler {
         String mac = client.getHandshakeData().getSingleUrlParam("mac");
         socketIOClientMap.put(mac, client);
         client.sendEvent("message", "onConnect back");
-        log.info("client= {}, mac= {}", client.getSessionId(), mac);
+        logger.info("client= {}, mac= {}", client.getSessionId(), mac);
     }
 
     /**
@@ -49,7 +49,7 @@ public class MessageEventHandler {
      */
     @OnDisconnect
     public void onDisconnect(SocketIOClient client) {
-        log.info("client: {} disconnect", client.getSessionId());
+        logger.info("client: {} disconnect", client.getSessionId());
     }
 
     /**
@@ -61,7 +61,7 @@ public class MessageEventHandler {
      */
     @OnEvent(value = "tell1")
     public void onEvent(SocketIOClient client, AckRequest request, Message data) {
-        log.info("received: {}", data);
+        logger.info("received: {}", data);
         //广播消息
         String cmd = data.getMsg();
         commandExecutor.execute(cmd, msg -> sendBroadcast(msg));

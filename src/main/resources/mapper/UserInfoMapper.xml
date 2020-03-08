@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phigey.bootme.dao.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.phigey.bootme.dao.entity.UserInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.phigey.bootme.dao.entity.UserInfo">
+    <result column="resume" jdbcType="LONGVARCHAR" property="resume" />
+  </resultMap>
+  <sql id="Base_Column_List">
+      `id`,
+      `name`,
+      `sex`,
+      `email`,
+      `job`,
+      `province_code`,
+      `city_code`,
+      `create_time`,
+      `update_time`
+  </sql>
+  <sql id="Blob_Column_List">
+    `resume`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `tb_user_info`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `tb_user_info`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.phigey.bootme.dao.entity.UserInfo">
+    insert into `tb_user_info` (`id`, `name`, `sex`,
+      `email`, `job`, `province_code`,
+      `city_code`, `create_time`, `update_time`,
+      `resume`)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{email,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{resume,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phigey.bootme.dao.entity.UserInfo">
+    insert into `tb_user_info`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="sex != null">
+        `sex`,
+      </if>
+      <if test="email != null">
+        `email`,
+      </if>
+      <if test="job != null">
+        `job`,
+      </if>
+      <if test="provinceCode != null">
+        `province_code`,
+      </if>
+      <if test="cityCode != null">
+        `city_code`,
+      </if>
+      <if test="createTime != null">
+        `create_time`,
+      </if>
+      <if test="updateTime != null">
+        `update_time`,
+      </if>
+      <if test="resume != null">
+        `resume`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resume != null">
+        #{resume,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phigey.bootme.dao.entity.UserInfo">
+    update `tb_user_info`
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        `sex` = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        `email` = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        `job` = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        `province_code` = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        `city_code` = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resume != null">
+        `resume` = #{resume,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.phigey.bootme.dao.entity.UserInfo">
+    update `tb_user_info`
+    set `name` = #{name,jdbcType=VARCHAR},
+      `sex` = #{sex,jdbcType=INTEGER},
+      `email` = #{email,jdbcType=VARCHAR},
+      `job` = #{job,jdbcType=VARCHAR},
+      `province_code` = #{provinceCode,jdbcType=VARCHAR},
+      `city_code` = #{cityCode,jdbcType=VARCHAR},
+      `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      `resume` = #{resume,jdbcType=LONGVARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phigey.bootme.dao.entity.UserInfo">
+    update `tb_user_info`
+    set `name` = #{name,jdbcType=VARCHAR},
+      `sex` = #{sex,jdbcType=INTEGER},
+      `email` = #{email,jdbcType=VARCHAR},
+      `job` = #{job,jdbcType=VARCHAR},
+      `province_code` = #{provinceCode,jdbcType=VARCHAR},
+      `city_code` = #{cityCode,jdbcType=VARCHAR},
+      `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      `update_time` = #{updateTime,jdbcType=TIMESTAMP}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

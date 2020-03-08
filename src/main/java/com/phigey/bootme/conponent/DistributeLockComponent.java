@@ -1,9 +1,10 @@
 package com.phigey.bootme.conponent;
 
 import com.phigey.bootme.constant.LockKeyConstant;
-import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.RLock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
@@ -12,8 +13,9 @@ import java.util.concurrent.TimeUnit;
  * @author lizf
  */
 @Component
-@Slf4j
 public class DistributeLockComponent {
+
+    private Logger logger = LoggerFactory.getLogger(DistributeLockComponent.class);
 
     @Autowired
     private Redisson redisson;
@@ -22,7 +24,7 @@ public class DistributeLockComponent {
         RLock rLock = rLock();
         try {
             rLock.lock();
-            log.info("{} : Redis current lock request!", System.currentTimeMillis());
+            logger.info("{} : Redis current lock request!", System.currentTimeMillis());
             TimeUnit.SECONDS.sleep(5);
         } catch (Exception e){
             e.printStackTrace();

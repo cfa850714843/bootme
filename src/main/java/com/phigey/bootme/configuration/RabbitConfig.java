@@ -1,6 +1,7 @@
 package com.phigey.bootme.configuration;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Queue;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +13,9 @@ import org.springframework.context.annotation.Lazy;
  */
 @Lazy
 @Configuration
-@Slf4j
 public class RabbitConfig {
+
+    private Logger logger = LoggerFactory.getLogger(RabbitConfig.class);
 
     @Value("${global.queue.cmd}")
     String cmdQueue;
@@ -23,13 +25,13 @@ public class RabbitConfig {
 
     @Bean
     public Queue cmdQueue(){
-        log.info("create cmd queue!");
+        logger.info("create cmd queue!");
         return new Queue(cmdQueue, true, true, false);
     }
 
     @Bean
     public Queue resultQueue(){
-        log.info("create result queue!");
+        logger.info("create result queue!");
         return new Queue(resultQueue,true, true, false);
     }
 
