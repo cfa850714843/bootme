@@ -3,17 +3,13 @@ package com.phigey.bootme.configuration;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.SpringAnnotationScanner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 /**
  * @author lizf
  */
 @Configuration
-@PropertySource(value = "classpath:application.yaml")
-@ConfigurationProperties(prefix = "socket.io")
 public class NettySocketIoConfig {
 
     @Autowired

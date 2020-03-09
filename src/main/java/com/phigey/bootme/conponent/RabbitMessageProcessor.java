@@ -1,8 +1,9 @@
 package com.phigey.bootme.conponent;
 
 import com.phigey.bootme.configuration.SystemConfig;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,9 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-@Slf4j
 public class RabbitMessageProcessor {
 
+    private Logger logger = LoggerFactory.getLogger(RabbitMessageProcessor.class);
 
     @Value("${global.queue.result}")
     String resultQueue;
@@ -47,8 +48,9 @@ public class RabbitMessageProcessor {
     public void receivedResultMessage(byte[] msgBytes) {
         try {
             String msg = new String(msgBytes,  SystemConfig.ENCODING);
-            log.info("Received message : [ {} ]", msg);
+            logger.info("Received message : [ {} ]", msg);
         }catch (Exception e) {
+            logger.error(e.getMessage());
             e.printStackTrace();
         }
     }

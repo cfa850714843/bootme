@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phigey.bootme.dao.mapper.TagMapMapper">
+  <resultMap id="BaseResultMap" type="com.phigey.bootme.dao.entity.TagMap">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="map_id" jdbcType="BIGINT" property="mapId" />
+    <result column="tag_id" jdbcType="BIGINT" property="tagId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.phigey.bootme.dao.entity.TagMap">
+    insert into `tb_tag_map` (`id`, `map_id`, `tag_id`,
+      `create_time`)
+    values (#{id,jdbcType=BIGINT}, #{mapId,jdbcType=BIGINT}, #{tagId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phigey.bootme.dao.entity.TagMap">
+    insert into `tb_tag_map`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="mapId != null">
+        `map_id`,
+      </if>
+      <if test="tagId != null">
+        `tag_id`,
+      </if>
+      <if test="createTime != null">
+        `create_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mapId != null">
+        #{mapId,jdbcType=BIGINT},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

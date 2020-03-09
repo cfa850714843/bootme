@@ -1,7 +1,8 @@
 package com.phigey.bootme.conponent;
 
 import com.phigey.bootme.common.StringProcessor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
@@ -13,13 +14,14 @@ import java.io.InputStreamReader;
  */
 
 @Component
-@Slf4j
 public class CommandExecutor {
+
+    private Logger logger = LoggerFactory.getLogger(CommandExecutor.class);
 
     @Async
     public void execute (String cmd, StringProcessor stringProcessor) {
         try {
-            log.info("exec: [ {} ]", cmd);
+            logger.info("exec: [ {} ]", cmd);
             Process process = Runtime.getRuntime().exec(cmd);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
@@ -30,7 +32,7 @@ public class CommandExecutor {
             process.destroy();
         } catch (IOException e) {
             e.printStackTrace();
-            log.info("exec: [ {} ]", e.getMessage());
+            logger.error("exec: [ {} ]", e.getMessage());
         }
     }
 }

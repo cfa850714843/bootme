@@ -3,9 +3,7 @@ package com.phigey.bootme.controller;
 import com.phigey.bootme.service.LocalCmdExecuteService;
 import com.phigey.bootme.worker.IWorker;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author lizf

@@ -1,7 +1,5 @@
 package com.phigey.bootme.configuration;
 
-import lombok.Data;
-import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -12,9 +10,26 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource(value = "classpath:application.yaml")
 @ConfigurationProperties(prefix = "socket.io")
-@Data
-@Getter
 public class SocketIoConfig {
     private String host;
     private Integer port;
+
+    public SocketIoConfig() {
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
+    }
 }

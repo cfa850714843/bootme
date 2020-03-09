@@ -36,7 +36,7 @@ logging:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://${global.daemon.host}:30106/db03?useSSL=false&useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://${global.daemon.host}:30106/db01?useSSL=false&useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
     username: fish
     password: fish
     driver-class-name: com.mysql.jdbc.Driver
@@ -73,7 +73,7 @@ socket.io:
 spring:
   profiles: prod
   datasource:
-    url: jdbc:mysql://${global.daemon.host}:30106/db03?useSSL=false&useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://${global.daemon.host}:30106/db01?useSSL=false&useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
     username: fish
     password: fish
     driver-class-name: com.mysql.jdbc.Driver
