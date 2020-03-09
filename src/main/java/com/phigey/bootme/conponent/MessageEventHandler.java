@@ -60,7 +60,7 @@ public class MessageEventHandler {
      * @param data    　客户端发送数据
      */
     @OnEvent(value = "tell1")
-    public void onEvent(SocketIOClient client, AckRequest request, Message data) {
+    public void onEvent(SocketIOClient client, AckRequest request, WebSocketMessage data) {
         logger.info("received: {}", data);
         //广播消息
         String cmd = data.getMsg();

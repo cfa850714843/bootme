@@ -4,10 +4,10 @@ package com.phigey.bootme.conponent;
 /**
  * @author lizf
  */
-public class Message {
+public class WebSocketMessage {
     private String msg;
 
-    public Message() {
+    public WebSocketMessage() {
     }
 
     public String getMsg() {
